@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zihirri <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 18:04:52 by zihirri           #+#    #+#             */
-/*   Updated: 2021/11/27 18:10:20 by zihirri          ###   ########.fr       */
+/*   Created: 2021/11/27 21:07:22 by zihirri           #+#    #+#             */
+/*   Updated: 2021/11/27 21:07:24 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
