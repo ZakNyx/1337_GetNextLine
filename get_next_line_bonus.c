@@ -61,7 +61,7 @@ ssize_t	ft_read_file(int fd, char *buffer, char **buff, char **line)
 
 char	*get_next_line(int fd)
 {
-	static char	*buff[1024];
+	static char	*buff[OPEN_MAX];
 	char		*buffer;
 	char		*line;
 	ssize_t		c;

@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 # include <fcntl.h>
 
 char	*get_next_line(int fd);
