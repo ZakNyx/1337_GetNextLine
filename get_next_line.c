@@ -6,50 +6,51 @@
 /*   By: zihirri <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 18:04:35 by zihirri           #+#    #+#             */
-/*   Updated: 2021/11/27 18:18:11 by zihirri          ###   ########.fr       */
+/*   Updated: 2021/11/28 18:25:43 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_get_line(char **buff_read, char **line)
+char	*ft_get_line(char **buff, char **line)
 {
 	size_t	i;
 	char	*second_buff;
 
+	second_buff = NULL;
 	i = 0;
-	while ((*(*buff_read + i) != '\n') && (*(*buff_read + i) != '\0'))
+	while ((*buff)[i] != '\n' && (*buff)[i] != '\0')
 		i++;
-	if (*(*buff_read + i) == '\n')
+	if ((*buff)[i] == '\n')
 	{
 		i++;
-		*line = ft_substr(*buff_read, 0, i);
-		second_buff = ft_strdup(*buff_read + i);
+		*line = ft_substr(*buff, 0, i);
+		second_buff = ft_strdup(*buff + i);
 	}
 	else
-		*line = ft_strdup(*buff_read);
-	free(*buff_read);
-	*buff_read = NULL;
+		*line = ft_strdup(*buff);
+	free(*buff);
+	*buff = NULL;
 	return (second_buff);
 }
 
-ssize_t	ft_read_file(int fd, char **buffer, char **buff_read, char **line)
+ssize_t	ft_read_file(int fd, char *buffer, char **buff, char **line)
 {
 	char	*tempo;
 	ssize_t	n;
 
 	n = 1;
-	while (!ft_strchr(*buff_read, '\n') && n)
+	while (ft_strchr(*buff, '\n') == 0 && n)
 	{
-		n = read(fd, *buffer, BUFFER_SIZE);
-		(*buffer)[n] = '\0';
-		tempo = *buff_read;
-		*buff_read = ft_strjoin(tempo, *buffer);
+		n = read(fd, buffer, BUFFER_SIZE);
+		buffer[n] = '\0';
+		tempo = *buff;
+		*buff = ft_strjoin(tempo, buffer);
 		free(tempo);
 	}
-	free(*buffer);
-	*buffer = NULL;
-	*buff_read = ft_get_line(buff_read, line);
+	free(buffer);
+	buffer = NULL;
+	*buff = ft_get_line(buff, line);
 	if (**line == '\0')
 	{
 		free(*line);
@@ -77,7 +78,7 @@ char	*get_next_line(int fd)
 	}
 	if (!buff)
 		buff = ft_strdup("");
-	c = ft_read_file(fd, &buffer, &buff, &line);
+	c = ft_read_file(fd, buffer, &buff, &line);
 	if (c == 0 && !line)
 		return (NULL);
 	return (line);

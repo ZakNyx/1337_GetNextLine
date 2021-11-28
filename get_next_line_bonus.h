@@ -6,7 +6,7 @@
 /*   By: zihirri <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 21:07:22 by zihirri           #+#    #+#             */
-/*   Updated: 2021/11/27 21:07:24 by zihirri          ###   ########.fr       */
+/*   Updated: 2021/11/28 18:27:22 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <limits.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
+# include <fcntl.h>
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
